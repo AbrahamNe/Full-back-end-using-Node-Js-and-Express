@@ -11,12 +11,13 @@ router.route("/books")
 router.route("/books/:_bookId")
      .get(bookController.findBookbyId)
      .put(bookController.updateEntireBook)
-   //  .patch(bookController.modifyBook)
+     .patch(bookController.modifyBook)
      .delete(bookController.removeBook);
      
 // Publisher
 router.route("/books/:_bookId/publisher")
-     .get(publisherController.getpublisher);     
+     .get(publisherController.getpublisher)
+     .delete(publisherController.deletePublisher);   
 
  
 module.exports = router;    

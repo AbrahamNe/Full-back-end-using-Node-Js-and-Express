@@ -2,19 +2,19 @@ const mongoose = require("mongoose");
 
 const publisherSchema = mongoose.Schema({
     name:{ type:String, required: true},
-    location: {
-       coordinates: {type: [Number], index: "2dsphere"} }
+    location: { type:{type: String},
+       coordinates: {type: [Number],index: "2dsphere"} }
  });
 
 
 const bookSchema = mongoose.Schema({
   title: { type:String, required:true },
-  isbn:{type:String, required:true},
-  pageCount:{type:Number, required:false},
+  isbn:String,
+  pageCount:Number,
   publishedDate:Date,
-  Description:{type: String, required:false},
+  Description: String,
   authors:  { type: [String] },
-  categories: String,
+  category: String,
   publisher:  publisherSchema
   
 });
