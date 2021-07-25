@@ -1,5 +1,4 @@
 const express = require("express");
-const { Server } = require("http");
 require("dotenv").config();
 require("./api/data/dbconnection");
 const router = require("./api/router/router");

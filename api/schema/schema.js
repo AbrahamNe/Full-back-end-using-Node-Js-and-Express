@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { required } = require("yargs");
 
 const publisherSchema = mongoose.Schema({
     name:{ type:String, required: true},
