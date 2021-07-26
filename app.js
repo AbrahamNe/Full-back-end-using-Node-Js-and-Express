@@ -13,6 +13,7 @@ app.use(function(req, res, next){
 
 app.use(express.urlencoded({ extended:false }));
 app.use(express.json());
+
 app.use("/api", router);
 
 const server =app.listen(process.env.PORT, function(){

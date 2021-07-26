@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Book = mongoose.model("Book");
 
- // get All Books
+// get All Books
 module.exports.getAllBooks = function (req, res) {
   console.log("All Books");
   let count = 18;
@@ -43,32 +43,31 @@ module.exports.findBookbyId = function (req, res) {
 };
 
 // PUT method
-
 module.exports.updateEntireBook = function (req, res) {
   console.log("\nBook full update request recieved");
 
   const bookId = req.params._bookId;
-  console.log("book id"+ bookId);
-  Book.findById(bookId).exec( function (err, book) {
+  console.log("book id" + bookId);
+  Book.findById(bookId).exec(function (err, book) {
     const response = {
       status: 204,
-      message: { message: "Game updated successfully" },
+      message: { message: "Book updated successfully" },
     };
     if (err) {
       console.log("Error finding book");
-      response.status; response.message= "Internal server error";
-     // res.status(500).send({"message":"Internal Server Error"});
+      response.status;
+      response.message = "Internal server error";
     } else if (!book) {
       console.log("Book id not found");
-      response.status =404 ; response.message= " book id not found error";
-     } if (response.status !== 204) {
+      response.status = 404;
+      response.message = " book id not found error";
+    }
+    if (response.status !== 204) {
       res.status(response.status).json(response.message);
-    } 
-    else {
-      
+    } else {
       console.log("  matching book properties to request body");
-      console.log("request body : "+req.body);
-      console.log("book : "+ book.title);
+      console.log("request body : " + req.body);
+      console.log("book : " + book.title);
       book.title = req.body.title;
       book.isbn = req.body.isbn;
       book.pageCount = parseInt(req.body.pageCount);
@@ -80,7 +79,7 @@ module.exports.updateEntireBook = function (req, res) {
 
       book.save(function (err, updatedBook) {
         if (err) {
-            console.log("Error inside book.save "+ err);
+          console.log("Error inside book.save " + err);
           res.status(500).json(err);
         } else {
           res.status(200).json(updatedBook);
@@ -94,15 +93,26 @@ module.exports.updateEntireBook = function (req, res) {
 module.exports.modifyBook = function (req, res) {
   const bookId = req.params._bookId;
 
-  Book.findById(bookId).exec( function (err, book) {
+  Book.findById(bookId).exec(function (err, book) {
+    const response = {
+      status: 204,
+      message: { message: "Book partial update was sucessfull" },
+    };
     if (err) {
-     res.status(500).send({"message":"Internal server error"});
-      console.log(err);
+      console.log("Errror finding book");
+      response.status = 500;
+      response.message = "Internal Server error";
     } else if (!book) {
-      res.status(400).message("Book id not found");
+      response.status = 404;
+      response.message = "Book ID not found";
       console.log("book id not found");
+    }
+    if (response.status !== 204) {
+      res.status(response.status).json(response.message);
     } else {
-        console.log("seeing req.body");
+      console.log("\ንmatching book properties to request body");
+      console.log("request body : " + req.body);
+      console.log("book : " + book.title);
       if (req.body.title) {
         book.title = req.body.title;
       }
@@ -124,19 +134,21 @@ module.exports.modifyBook = function (req, res) {
       if (req.body.category) {
         book.category = req.body.category;
       }
-      if(req.body.publisher){
-          book.publisher = req.body.publisher;
+      if (req.body.publisher) {
+        book.publisher = req.body.publisher;
       }
-    }
 
-    Book.save(function (err, UpdatedBook) {
-      if (err) {
-        res.status(400).message("error");
-      } else {
-        res.status(400).message(UpdatedBook);
-      }
-    })
-  })
+      Book.save(function (err, UpdatedBook) {
+        if (err) {
+          response.status = 400;
+          response.message = "Error";
+        } else {
+          // response.status= 400; response.message= UpdatedBook;
+          res.status(200).json(UpdatedBook);
+        }
+      });
+    }
+  });
 };
 
 // Delete

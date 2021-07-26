@@ -17,7 +17,10 @@ router.route("/books/:_bookId")
 // Publisher
 router.route("/books/:_bookId/publisher")
      .get(publisherController.getpublisher)
-     .delete(publisherController.deletePublisher);   
+     .put(publisherController.updateEntirePublisher)
+     .patch(publisherController.modifyPublisher)
+     .delete(publisherController.deletePublisher); 
+
 
  
 module.exports = router;    
