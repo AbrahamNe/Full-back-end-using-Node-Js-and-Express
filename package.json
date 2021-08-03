@@ -10,6 +10,8 @@
   "author": "ab",
   "license": "ISC",
   "dependencies": {
+    "angular": "^1.8.2",
+    "angular-route": "^1.8.2",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.13.3"

@@ -1,0 +1,13 @@
+<div style="margin: 2em 2em">
+<h3>Details about {{bookdetailctrl.bookDetail.title}}</h3>
+  <ul class="list-group">
+    <li class="list-group-item active">
+      Author: {{bookdetailctrl.bookDetail.authors}} <br />
+      Isbn: {{bookdetailctrl.bookDetail.isbn}} <br />
+      Page Count: {{bookdetailctrl.bookDetail.pageCount}}  pages <br />
+      Published Date :{{bookdetailctrl.bookDetail.publishedDate | date: "MMM-dd-yyyy"}} <br />
+      Description: {{bookdetailctrl.bookDetail.Description}} <br />
+      Publisher: {{bookdetailctrl.bookDetail.publisher.name}}
+    </li>
+  </ul>
+</div>

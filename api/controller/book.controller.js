@@ -7,7 +7,7 @@ module.exports.getAllBooks = function (req, res) {
   let count = 18;
   let offset = 0;
   if (req.query && req.query.count) {
-    count = parseInt(req.query.count, 5);
+    count = parseInt(req.query.count, 7);
   }
   if (req.query && req.query.offset) {
     count = parseInt(req.query.offset, 2);
@@ -28,9 +28,16 @@ module.exports.getAllBooks = function (req, res) {
 };
 
 // get a book by Id
+// its 
 module.exports.findBookbyId = function (req, res) {
   const bookId = req.params._bookId;
-  Book.findById(bookId).exec(function (err, book) {
+
+  // mongoose 
+  // done by lipuv and added to pull request
+ 
+  Book.findById(bookId).exec(function (err, book) { // linking and calling lupuv & put the result in the poll queue
+    // linking done in v8
+    // after the lipuv done its added to quque
     if (err) {
       console.log("Error finding a book");
       res.status(500).json(err);
@@ -48,6 +55,7 @@ module.exports.updateEntireBook = function (req, res) {
 
   const bookId = req.params._bookId;
   console.log("book id" + bookId);
+   
   Book.findById(bookId).exec(function (err, book) {
     const response = {
       status: 204,
@@ -169,3 +177,43 @@ module.exports.removeBook = function (req, res) {
     res.status(response.status).json(response.message);
   });
 };
+
+
+// add new Book
+module.exports.addnewBook = function(req, res){
+  if(req.body && req.body.title){
+    Book.create(
+      {
+      title: req.body.title,
+      isbn :req.body.isbn,
+      pageCount : req.body.pageCount,
+      publishedDate : req.body.publishedDate,
+      Description : req.body.Description,
+      authors : req.body.authors,
+      category : req.body.category,
+      publisher : req.body.publisher,
+    },
+    function(err, books){
+      const response = {
+        status :201,
+        message : books,
+      };
+      if(err){
+        console.log(err);
+        response.status = 500;
+        response.message = err;
+      }
+      if(!books){
+        response.status = 404;
+        response.message = {
+          message:"error when adding a new book"
+        };
+      }
+      res.status(response.status).json(response.message);
+    }
+    );
+  } else {
+    console.log("data missing from post method");
+    res.status(400).json({error:"data misssing from post method"});
+  }
+}

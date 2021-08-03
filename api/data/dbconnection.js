@@ -6,7 +6,9 @@ const dbURL = process.env.DB_URL + process.env.DB_NAME;
 mongoose.connect(dbURL, {useNewUrlParser:true, useUnifiedTopology:true});
 //mongoose.connect(dbURL);
 
+//
 mongoose.connection.on("connected", function(){
+    // its a call back , executed when its connection is on
     console.log("Connected to "+ dbURL);
 });
 

@@ -1,0 +1,11 @@
+<!-- 
+<h4>{{booklistctrl.title}}</h4> -->
+<div style="margin:1em">
+<h2>List of Books</h2>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item" ng-repeat="book in booklistctrl.BookContent">
+        <a ng-href="#/books/{{book._id}}">{{book.title}}  <br/>
+       </li>
+    </ul>
+</div>
