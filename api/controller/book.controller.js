@@ -181,6 +181,7 @@ module.exports.removeBook = function (req, res) {
 
 // add new Book
 module.exports.addnewBook = function(req, res){
+  console.log("add new Book");
   if(req.body && req.body.title){
     Book.create(
       {
