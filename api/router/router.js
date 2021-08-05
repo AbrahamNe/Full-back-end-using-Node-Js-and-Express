@@ -3,6 +3,7 @@ const router = express.Router();
 
 const bookController = require("../controller/book.controller");
 const publisherController = require("../controller/publisher.controller");
+const userController = require("../controller/user.controller");
 // hocking if its a book do this
  // Books
 router.route("/books")
@@ -24,6 +25,11 @@ router.route("/books/:_bookId/publisher")
      .patch(publisherController.modifyPublisher)
      .delete(publisherController.deletePublisher); 
 
-
+// users
+router.route("/user/register")
+    .post(userController.register);
  
+router.route("/user/login")
+    .post(userController.login) ;
+
 module.exports = router;    

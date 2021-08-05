@@ -25,6 +25,16 @@ function config ($routeProvider){
         controller :"DeleteBookController",
         controllerAs: "deletebookctrl"
     })
+    .when("/signup",{
+        templateUrl:"angularJs-app/register/register.html",
+        controller:"RegisterController",
+        controllerAs:"registerctrl"
+    })
+    .when("/login",{
+        templateUrl:"angularjs-app/login/login.html",
+        controller:"loginController",
+        controllerAs:"loginctrl"
+    })
     
     // .otherwise({ redirectTo: "/"});
 }

@@ -1,0 +1,35 @@
+<div style="position: relative; text-align: left; padding: 0.4em 1em;
+ margin:0.2em; width: 60%;">
+
+<h4 style="text-align: center; padding-top: 1.2em;">create an account</h4>
+<div ng-if="vm.message" class="alert alert-success" role="alert">
+    <p>{{vm.message}}</p>
+</div>
+
+<div ng-if="vm.err" class="alert alert-danger" role="alert">
+    {{vm.err}}
+</div>
+
+<form ng-hide="vm.message" name="register" ng-submit="vm.register()" style="font-size: medium;">
+    <div class="form-group" >
+        <label for="name">Name : </label>
+        <input type="text" required class="form-control" id="name" placeholder="Enter name" name="name" ng-model="vm.name"/>
+    </div>
+
+    <div class="form-group">
+        <label for="username">Username : </label>
+        <input type="text" required class="form-control" id="username" placeholder="Username" name="username" ng-model="vm.username" autocapitalize="none"/>
+    </div>
+    <div class="form-group">
+        <label for="password">Password : </label>
+        <input type="password" required class="form-control" id="password" placeholder="Password" name="password" ng-model="vm.password" autocapitalize="none"/>
+    </div>
+    <div class="form-group">
+        <label for="password-repeat">Password : </label>
+        <input type="password" required class="form-control" id="password-repeat" placeholder="repeat password" name="password-repeat" ng-model="vm.passwordRepeat" autocapitalize="none"/>
+    </div> 
+    
+    <br>
+    <button type="submit" class="btn btn-success">Register</button>
+</div>
+</form>

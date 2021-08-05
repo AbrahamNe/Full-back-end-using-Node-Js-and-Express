@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 require("../schema/schema");
+require("../schema/userschema");
+
 const dbURL = process.env.DB_URL + process.env.DB_NAME;
 
 mongoose.connect(dbURL, {useNewUrlParser:true, useUnifiedTopology:true});

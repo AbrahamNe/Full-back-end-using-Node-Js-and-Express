@@ -19,4 +19,4 @@ const bookSchema = mongoose.Schema({
   
 });
 
-mongoose.model("Book", bookSchema);
+mongoose.model("Book", bookSchema,"books");

@@ -6,7 +6,10 @@ function BookDataFactory($http){
         getAllBooks: getAllBooks,
         findBookbyId:findBookbyId,
         addnewBook:addnewBook,
-        removeBook:removeBook
+        removeBook:removeBook,
+        login: login,
+        register:register
+
 
     };
     function getAllBooks(){
@@ -22,6 +25,15 @@ function BookDataFactory($http){
     function removeBook(bookId){
         return $http.delete("/api/books/"+bookId).then(complete).catch(failed);
     }
+
+    //user
+    function register(user){
+        return $http.post("/api/user/register", user).then(complete).catch(failed);
+    }
+    function login(user){
+        return $http.post("/api/user/login", user).then(complete).catch(failed);
+    }
+
     function complete(response) {
         return response.data;
     }
