@@ -2,7 +2,7 @@
 <!--  -->
 <div  style="margin:1.5em; width:80%">
  
-<div ng-if="bookaddctrl.addnewBook" class="form-controller btn-success" style="text-align: center;">
+<div ng-if="bookaddctrl.bookHandler" class="form-controller btn-success" style="text-align: center;">
     sucessfully added !!</div>
 
 <form name ="bookaddctrl.form" ng-submit="bookaddctrl.bookHandler()" >
@@ -43,7 +43,7 @@
         <textarea class="form-control" id="Description" rows="3"></textarea>
       </div> <br/>
     
-    <button type="submit" class="btn btn-primary">add book</button>
+    <button  type="submit" class="btn btn-primary">add book</button>
   </form>
 
   </div>
